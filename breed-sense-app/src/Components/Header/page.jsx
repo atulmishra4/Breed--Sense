@@ -26,7 +26,7 @@ const Navbar = () => {
         <div className="p-0">
             <div className="flex  top-0 justify-between items-center bg-white h-16  sm:h-20  w-100% p-6 ">
                 <div className="head items-center sticky pr-3">
-                    <h1 className="font-bold text-sky-600   text-[16px]  sm:text-[24px]  ">
+                    <h1 className="font-bold text-sky-600   text-[16px]  sm:text-[22px]  ">
                         <Link href="/">Breed-Sense</Link>
                     </h1>
                 </div>
