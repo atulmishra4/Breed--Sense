@@ -1,64 +1,83 @@
 "use client"
-import { useState } from 'react'
-import { useForm } from "react-hook-form"
 import React from 'react'
+import { useForm } from "react-hook-form";
+import Link from "next/link"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import axios from "axios"
 
 function page() {
     const {
         register,
         handleSubmit,
-        setError,
-        formState: { errors, isSubmitting },
+        formState: { errors },
     } = useForm();
 
-    const delay = (d) => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve()
-            }, d * 1000);
-        })
-    }
+    // ✅ Define your onSubmit function
     const onSubmit = async (data) => {
-        await delay(2) // simulating network delay
-        let r = await fetch("http://localhost:3000", {
-            method: "POST", headers: {
-                "Content-Type": "application/json",
-            }, body: JSON.stringify(data)
-        })
+        console.log("Form data:", data);
+        // You can handle login logic here — like sending data to your API
+    };
 
-        let res = await r.text()
-        console.log(data, res)
-        // if(data.username !== "shubham"){
-        //   setError("myform", {message: "Your form is not in good order because credentials are invalid"})
-        // }
-        // if(data.username === "rohan"){
-        //   setError("blocked", {message: "Sorry this user is blocked"})
-        // }
+    const router = useRouter()
+    const [user, setuser] = useState({
+        email: "",
+        password: "",
+    })
+    const [buttondisabled, setbuttonDisabled] = useState(false)
+    const [loading, setloading] = useState(false)
+    const login = async () => {
+        try {
+            setloading(true)
+            const response = await axios.post("/api/users/login", user)
+            router.push("/profile")
+        }
+        catch (error) {
+            console.log("Login failed", error)
+        }
+        finally {
+            setloading(true)
+        }
     }
+    useEffect(() => {
+        if (user.email.length > 0 && user.password.length > 0) {
+            setbuttonDisabled(false)
+        }
+        else {
+            setbuttonDisabled(true)
+        }
+    }, [user])
 
     return (
         <div className="w-100% bg-sky-400 flex justify-center ">
             <div className=" block ">
                 <div className="box w-[350px] h-[500px]  mt-32 mb-32 rounded-3xl text-center bg-white">
                     <h1 className="font-bold text-2xl pt-4 pb-6 block ">Breed Sense </h1>
-                    {isSubmitting && <div>Loading...</div>}
                     <div className="container">
-                        <form action="" onSubmit={handleSubmit(onSubmit)}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
 
-                            <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " placeholder='Email'  {...register("email", { minLength: { value: 7, message: "Min length of password is 7" }, })} type="email" />
-                            {errors.password && <div className='red'>{errors.password.message}</div>}
-                            <br /> <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " placeholder='Password'  {...register("password", { minLength: { value: 7, message: "Min length of password is 7" }, })} type="password" />
+                            {/* <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " placeholder='Email'  {...register("email", { minLength: { value: 7, message: "Min length of password is 7" }, })} type="email" /> */}
+                            <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " type="email" id="email" value={user.email} placeholder="email" onChange={(e) => setuser({ ...user, email: e.target.value })} />
+
                             {errors.password && <div className='red'>{errors.password.message}</div>}
                             <br />
+                            {/* <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " placeholder='Password'  {...register("password", { minLength: { value: 7, message: "Min length of password is 7" }, })} type="password" /> */}
+                            <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " type="password" id="password" value={user.password} placeholder="password" onChange={(e) => setuser({ ...user, password: e.target.value })} />
+                            {errors.password && <div className='red'>{errors.password.message}</div>}
+                            {/* <br />
                             <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " disabled={isSubmitting} type="submit" value="Login" />
                             {errors.myform && <div className='red'>{errors.myform.message}</div>}
-                            {errors.blocked && <div className='red'>{errors.blocked.message}</div>}
+                            {errors.blocked && <div className='red'>{errors.blocked.message}</div>} */}
                         </form>
+                        <button className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black "  onClick={login} >
+                            {buttondisabled ? "No Login" : "Login"}
+                        </button>
+
                         <div className="mt-6">
                             <div className="or">
-                            <hr />
-                            <h1> OR </h1>
-                            <hr />
+                                <hr />
+                                <h1> OR </h1>
+                                <hr />
                             </div>
 
                             <p>Already have an account?</p>

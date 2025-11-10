@@ -1,83 +1,82 @@
 "use client"
 import React from 'react'
-import { useState } from 'react'
+import { useForm } from "react-hook-form";
 import { useSession, signIn, signOut } from "next-auth/react"
-import { useForm } from "react-hook-form"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import axios from "axios"
 
 function Page() {
-  const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors, isSubmitting },
-  } = useForm();
-
-  const { data: session } = useSession();
-
-  const delay = (d) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, d * 1000);
-    });
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
   };
+  const router = useRouter()
+  const [loading, setloading] = useState(false)
+  const [user, setuser] = useState({
+    email: "",
+    password: "",
+    number: "",
+    username: ""
+  })
 
-  const onSubmit = async (data) => {
-    // await delay(2); // simulate delay
-    let r = await fetch("http://localhost:3000", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    let res = await r.text();
-    console.log(data, res);
-  };
+  const [buttonDisabled, setbuttonDisabled] = useState(false)
 
-  //  Check login session properly inside return
-  if (session) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen bg-amber-200">
-        <h1 className="text-3xl font-bold mb-6">Welcome, {session.user.email}</h1>
-        <button
-          onClick={() => signOut()}
-          className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700"
-        >
-          Sign out
-        </button>
-      </div>
-    );
+  const signup = async () => {
+    try {
+      setloading(true)
+      const response = await axios.post("/api/users/signup", user);
+      console.log("Signup success", response.data);
+      router.push("/login")
+    }
+    catch (error) {
+      console.log("Signup failed", error)
+    }
+    finally {
+      setloading(false)
+    }
   }
 
+  useEffect(() => {
+    if (user.email.length > 0 && user.password.length > 0 && user.username.length > 0) {
+      setbuttonDisabled(false)
+    }
+    else {
+      setbuttonDisabled(true)
+    }
+  }, [user])
   return (
-    <div className="w-full h-screen bg-amber-200 flex justify-center">
-      <div className="w-[350px] h-[550px] mt-20 rounded-3xl text-center bg-amber-600 shadow-lg">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-violet-500 ">
+      <div className="w-[350px] h-[550px] rounded-3xl text-center bg-amber-600 shadow-lg">
         <h1 className="font-bold text-2xl pt-4 pb-6">Breed Sense</h1>
-
-        {isSubmitting && <div>Loading...</div>}
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white hover:text-black"
-            placeholder="Name"
+            placeholder="username"
             {...register("username", {
               required: { value: true, message: "This field is required" },
               minLength: { value: 3, message: "Min length is 3" },
               maxLength: { value: 8, message: "Max length is 8" },
             })}
             type="text"
+            id="username"
+            value={user.username}
+            onChange={(e) => setuser({ ...user, username: e.target.value })}
           />
           {errors.username && <div className="text-red-700">{errors.username.message}</div>}
 
           <input
             className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white hover:text-black"
             placeholder="Phone number"
-            {...register("phone", {
+            {...register("number", {
               required: { value: true, message: "Phone number is required" },
               minLength: { value: 10, message: "Min length is 10 digits" },
             })}
             type="number"
+            id="number"
+            value={user.number}
+            onChange={(e) => setuser({ ...user, number: e.target.value })}
           />
           {errors.phone && <div className="text-red-700">{errors.phone.message}</div>}
 
@@ -88,6 +87,9 @@ function Page() {
               required: { value: true, message: "Email is required" },
             })}
             type="email"
+            id="email"
+            value={user.email}
+            onChange={(e) => setuser({ ...user, email: e.target.value })}
           />
           {errors.email && <div className="text-red-700">{errors.email.message}</div>}
 
@@ -99,6 +101,36 @@ function Page() {
               minLength: { value: 7, message: "Min length is 7" },
             })}
             type="password"
+            id="password"
+            value={user.password}
+            onChange={(e) => setuser({ ...user, password: e.target.value })}
+          />
+          {errors.password && <div className="text-red-700">{errors.password.message}</div>}
+          <input
+            className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white hover:text-black"
+            placeholder="Confirm Password"
+            {...register("confirmPassword", {
+              required: "Confirm your password",
+              validate: (value) =>
+                value === watch("password") || "Passwords do not match",
+            })}
+            type="password"
+          />
+          {errors.confirmPassword && (
+            <div className="text-red-700">{errors.confirmPassword.message}</div>
+          )}
+
+          {/* <input
+            className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white hover:text-black"
+            placeholder="Password"
+            {...register("password", {
+              required: { value: true, message: "Password is required" },
+              minLength: { value: 7, message: "Min length is 7" },
+            })}
+            type="password"
+              id="password"
+            value={user.password}
+            onChange={(e) => setuser({ ...user, password: e.target.value })}
           />
           {errors.password && <div className="text-red-700">{errors.password.message}</div>}
 
@@ -109,16 +141,21 @@ function Page() {
               required: { value: true, message: "Confirm your password" },
             })}
             type="password"
+              id="confirm"
+            value={user.confirm}
+            onChange={(e) => setuser({ ...user, confirm: e.target.value })}
           />
-          {errors.confirmPassword && <div className="text-red-700">{errors.confirmPassword.message}</div>}
+          {errors.confirmPassword && <div className="text-red-700">{errors.confirmPassword.message}</div>} */}
 
-          <input
+          {/* <input
             className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-500 text-white hover:text-black cursor-pointer"
-            disabled={isSubmitting}
             type="submit"
             value="Sign Up"
-          />
+          /> */}
         </form>
+        <button className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-500 text-white hover:text-black cursor-pointer" onClick={signup} >
+          {buttonDisabled ? "No Sign Up" : "Sign Up"}
+        </button>
 
         <div className="mt-6">
           <p>Already have an account?</p>

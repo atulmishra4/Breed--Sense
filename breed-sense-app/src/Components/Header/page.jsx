@@ -26,7 +26,7 @@ const Navbar = () => {
         <div className="p-0">
             <div className="flex  top-0 justify-between items-center bg-white h-16  sm:h-20  w-100% p-6 ">
                 <div className="head items-center sticky pr-3">
-                    <h1 className="font-bold text-sky-600   text-[16px]  sm:text-[22px]  ">
+                    <h1 className="font-bold text-violet-600   text-[16px]  sm:text-[22px]  ">
                         <Link href="/">Breed-Sense</Link>
                     </h1>
                 </div>
@@ -41,18 +41,18 @@ const Navbar = () => {
                     )}
                 </div>
                 <div className="hidden md:flex text-white font-bold">
-                    <div className="bg-sky-500 m-2 rounded-md ">
+                    <div className="bg-violet-500 m-2 rounded-md ">
                         <motion.button
-                            className="signup-button1 p-2  hover:bg-sky-600 rounded-md  "
+                            className="signup-button1 p-2  hover:bg-violet-600 rounded-md  "
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
                         >
                             <Link href="/signup">Signup</Link>
                         </motion.button>
                     </div>
-                    <div className="m-2 bg-sky-500  rounded-md ">
+                    <div className="m-2 bg-violet-500  rounded-md ">
                         <motion.button
-                            className="login-button1 p-2  hover:bg-sky-600  rounded-md  "
+                            className="login-button1 p-2  hover:bg-violet-600  rounded-md  "
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
                         >
@@ -62,7 +62,7 @@ const Navbar = () => {
                 </div>
                 <div className="w-8 h-8 block md:hidden text-white">
                     <motion.button onClick={() => setShowDiv(!showDiv)}
-                        className="togglte-button bg-sky-500  rounded-md  "
+                        className="togglte-button bg-violet-500  rounded-md  "
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                     >
@@ -81,18 +81,18 @@ const Navbar = () => {
                                 <Link className=" m-1 pl-5 shadow hover:shadow-lg pb-2 pt-3 block" href="/contact">Contact Us</Link>
                                 <Link className=" m-1 pl-5 shadow hover:shadow-lg pb-2 pt-3 block" href="/opportunities">Oppertunities </Link>
                                 <div className="flex pl-2.5 pb-2.5 pt-5">
-                                    <div className="  bg-sky-500 m-2 rounded-md ">
+                                    <div className="  bg-violet-500 m-2 rounded-md ">
                                         <motion.button
-                                            className="signup-button1 p-2 hover:bg-sky-600 rounded-md  "
+                                            className="signup-button1 p-2 hover:bg-violet-600 rounded-md  "
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.95 }}
                                         >
                                             <Link href="/signup">Signup</Link>
                                         </motion.button>
                                     </div>
-                                    <div className="m-2 bg-sky-500 rounded-md ">
+                                    <div className="m-2 bg-violet-500 rounded-md ">
                                         <motion.button
-                                            className="login-button1 p-2  hover:bg-sky-600 rounded-md  "
+                                            className="login-button1 p-2  hover:bg-violet-600 rounded-md  "
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.95 }}
                                         >
