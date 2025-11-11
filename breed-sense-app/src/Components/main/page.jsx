@@ -1,151 +1,202 @@
-"use Client"
+"use client"
 import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { motion } from 'framer-motion'
-import { menu, X } from 'lucide-react'
 import Link from 'next/link'
-import { a, div, label, link } from 'framer-motion/client'
-function main() {
+
+function Main() {
     return (
-        <div>
-            <div className="container ">
-                <main>
-                    <div className="welcome text-center content-center min-h-96 bg-purple-500 w-screen gap-4 ">
-                        <h1 className="text-white font-bold text-4xl  m-5 md:text-5xl  ">Welcome to Breed-Sense</h1>
-                        <h3 className="text-white font-medium m-5  text-lg">Image-based Breed Recognition <br /> Cattle &
-                            Buffaloes
-                            Identification System</h3>
-                        <div className="flex justify-center font-bold text-white" >
-                            <div className="m-2 bg-purple-700  w-fit  rounded-md ">
+        <div className="min-h-screen">
+            {/* Hero Section */}
+            <section className="relative bg-gradient-to-br from-purple-600 via-purple-500 to-purple-400 overflow">
+                <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="text-white font-extrabold text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight"
+                        >
+                            Welcome to Breed-Sense
+                        </motion.h1>
+                        <motion.p 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="text-white/95 text-xl md:text-2xl font-medium mb-10 leading-relaxed"
+                        >
+                            Image-based Breed Recognition<br />
+                            Cattle & Buffaloes Identification System
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                        >
+                            <Link href="/login">
                                 <motion.button
-                                    className="login-button2 p-3   hover:bg-purple-600 rounded-md  "
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
+                                    className="bg-white text-purple-600 font-bold text-lg px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
                                 >
-                                    <Link href="/login">Try Demo</Link>
+                                    Try Demo
                                 </motion.button>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-            <div className="bg-purple-300">
-                    
-                <header className="text-center pt-8  font-bold text-[25px] ">
-                    Learn how it works
-                </header>
-                <div
-                    className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 text-center  justify-center grid-flow-row-dense">
-                    <div
-                        className="search shadow bg-purple-100 hover:shadow-lg  m-2 text-center justify-center pt-4 pl-4 pr-4 pb-2 sm:p-4  rounded-[20px] ">
-                        <div className="image p-2">📷</div>
-                        <h1 className="font-bold text-[20px] sm:text-4xl">1.Capture</h1>
-                        <div className="text text-[10px] sm:text-xl ">Farmer snaps a photo </div>
-                    </div>
-                    <div
-                        className="search shadow hover:shadow-lg  m-2 text-center justify-center pt-4 pl-4 pr-4 pb-2 sm:p-4 rounded-[20px]  bg-white">
-                        <div className="image p-2">🔎</div>
-                        <h1 className="font-bold sm:text-4xl text-[20px] ">2.Classify </h1>
-                        <div className="text text-[10px] sm:text-xl md:text-normal">Lightweight AI on cloud device
-                        </div>
-                    </div>
-                    <div
-                        className="search shadow hover:shadow-lg m-2 text-center justify-center pt-4 pl-4 pr-4 pb-2 sm:p-4  rounded-[20px]  bg-white">
-                        <div className="image p-2 ">📋</div>
-                        <h1 className="font-bold text-[20px] sm:text-4xl">3.Report</h1>
-                        <div className="text text-[10px] sm:text-xl md:font-normal "> Breed Info + tips </div>
+                            </Link>
+                        </motion.div>
                     </div>
                 </div>
-                <br />
-            </div>
-
-            <div className="features bg-purple-300  text-center">
-                <h1 className="font-bold text-2xl ">Features & Benefits</h1>
-                <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3 p-0.5 text-left  ">
-                    <div
-                        className="  shadow hover:shadow-lg bg-white   pr-2 pb-2 pl-2 pt-2 sm:pb-1 border-0 rounded-[5px]   boxes1">
-                        <h1 className="font-bold ">Accurate breed recognition</h1>
-                        <div className="text">
-                            Uses color, body shape, horns and Facial cues to classify breeds.
-                        </div>
-                    </div>
-                    <div
-                        className=" shadow hover:shadow-lg  bg-white   pr-2 pb-2 pl-2 pt-2 sm:pb-1 border-0 rounded-[5px]   boxes2">
-                        <h1 className="font-bold   ">Breed-specific guidance</h1>
-                        <div className="text">Milk yeild estimates, feeding & disease susceptibility tips.</div>
-                    </div>
-                    <div className=" shadow hover:shadow-lg bg-white   pr-2 pb-2 pl-2 pt-2 sm:pb-1 border-0 rounded-[5px]   boxes3">
-                        <h1 className="font-bold   ">Lightweight & offline-friendly</h1>
-                        <div className="text">Works on low-end phones and caches results when offline.</div>
-                    </div>
-                    <div className=" shadow hover:shadow-lg bg-white  pr-2 pb-2 pl-2 pt-2  sm:pb-1 border-0 rounded-[5px]   boxes4">
-                        <h1 className="font-bold   ">Data storage & reports</h1>
-                        <div className="text">Cloud records for insurance claims and goverment schemes.</div>
-                    </div>
-                    <div className=" shadow hover:shadow-lg bg-white  pr-2 pb-2 pl-2 pt-2 sm:pb-1 border-0 rounded-[5px]   boxes5">
-                        <h1 className="font-bold   ">Dynamic learning </h1>
-                        <div className="text">Model retrins with farmer-submitted imaes to improve accuracy</div>
-                    </div>
-                    <div className=" shadow hover:shadow-lg bg-white  pr-2 pb-2 pl-2 pt-2 sm:pb-1 border-0 rounded-[5px]   boxes6">
-                        <h1 className="font-bold   ">Farmer-friendly UI</h1>
-                        <div className="text">Minimal text, big icons, local language support ready.</div>
-                    </div>
-
+                {/* Decorative wave */}
+                <div className="absolute bottom-0 left-0 right-0">
+                    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="rgb(233, 213, 255)"/>
+                    </svg>
                 </div>
-                <br />
-            </div>
+            </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div className="main p-2 bg-purple-300  ">
-                <div className="heading text-center p-4 font-bold text-[24px]   ">
-                    Testimoniols
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 text-center ">
-                    <div className="John pl-6  pr-6 pb-8 bg-white m-3 rounded-[20px] ">
-                        <h1 className="font-bold text-[20px] p-4 ">John Doe</h1>
-                        <div className="text-black">This technology has revolutionzed our cattel farming business</div>
-                    </div>
-                    <div className="Jane pl-6  pr-6 pb-8 bg-white m-3 rounded-[20px] ">
-                        <h1 className="font-bold text-[20px] p-4 ">Jane Smith</h1>
-                        <div className="text-black ">The breed recognition feature is very accurate and helpful</div>
+            {/* How It Works Section */}
+            <section className="bg-gradient-to-b from-purple-100 to-purple-50 py-20">
+                <div className="container mx-auto px-4">
+                    <motion.h2 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="text-center font-bold text-4xl md:text-5xl mb-16 text-gray-800"
+                    >
+                        Learn How It Works
+                    </motion.h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        {[
+                            { icon: "📷", title: "1. Capture", desc: "Farmer snaps a photo of the animal" },
+                            { icon: "🔎", title: "2. Classify", desc: "Lightweight AI analyzes on cloud device" },
+                            { icon: "📋", title: "3. Report", desc: "Receive breed info and expert tips" }
+                        ].map((step, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: idx * 0.2 }}
+                                whileHover={{ y: -8 }}
+                                className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-purple-100"
+                            >
+                                <div className="text-6xl mb-6">{step.icon}</div>
+                                <h3 className="font-bold text-2xl mb-4 text-gray-800">{step.title}</h3>
+                                <p className="text-gray-600 text-lg leading-relaxed">{step.desc}</p>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
-            </div>
+            </section>
 
+            {/* Features Section */}
+            <section className="bg-gradient-to-b from-purple-50 to-white py-20">
+                <div className="container mx-auto px-4">
+                    <motion.h2 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="text-center font-bold text-4xl md:text-5xl mb-16 text-gray-800"
+                    >
+                        Features & Benefits
+                    </motion.h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                        {[
+                            {
+                                title: "Accurate Breed Recognition",
+                                desc: "Uses color, body shape, horns and facial cues to classify breeds.",
+                                gradient: "from-purple-400 to-purple-500"
+                            },
+                            {
+                                title: "Breed-Specific Guidance",
+                                desc: "Milk yield estimates, feeding & disease susceptibility tips.",
+                                gradient: "from-indigo-400 to-indigo-500"
+                            },
+                            {
+                                title: "Lightweight & Offline-Friendly",
+                                desc: "Works on low-end phones and caches results when offline.",
+                                gradient: "from-violet-400 to-violet-500"
+                            },
+                            {
+                                title: "Data Storage & Reports",
+                                desc: "Cloud records for insurance claims and government schemes.",
+                                gradient: "from-fuchsia-400 to-fuchsia-500"
+                            },
+                            {
+                                title: "Dynamic Learning",
+                                desc: "Model retrains with farmer-submitted images to improve accuracy.",
+                                gradient: "from-purple-400 to-purple-600"
+                            },
+                            {
+                                title: "Farmer-Friendly UI",
+                                desc: "Minimal text, big icons, local language support ready.",
+                                gradient: "from-pink-400 to-pink-500"
+                            }
+                        ].map((feature, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: idx * 0.1 }}
+                                whileHover={{ scale: 1.03 }}
+                                className="group relative bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden"
+                            >
+                                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+                                <div className="relative z-10">
+                                    <h3 className="font-bold text-xl mb-3 text-gray-800 group-hover:text-purple-600 transition-colors">
+                                        {feature.title}
+                                    </h3>
+                                    <p className="text-gray-600 leading-relaxed">
+                                        {feature.desc}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-
+            {/* Testimonials Section */}
+            <section className="bg-gradient-to-b from-white to-purple-50 py-20">
+                <div className="container mx-auto px-4">
+                    <motion.h2 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="text-center font-bold text-4xl md:text-5xl mb-16 text-gray-800"
+                    >
+                        Testimonials
+                    </motion.h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        {[
+                            {
+                                name: "John Doe",
+                                text: "This technology has revolutionized our cattle farming business.",
+                                role: "Dairy Farmer"
+                            },
+                            {
+                                name: "Jane Smith",
+                                text: "The breed recognition feature is very accurate and helpful.",
+                                role: "Livestock Manager"
+                            }
+                        ].map((t, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: idx * 0.15 }}
+                                className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
+                            >
+                                <p className="text-gray-700 italic mb-4">"{t.text}"</p>
+                                <div className="font-bold text-gray-900">{t.name}</div>
+                                <div className="text-sm text-gray-500">{t.role}</div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
         </div>
     )
 }
 
-export default main
+export default Main
