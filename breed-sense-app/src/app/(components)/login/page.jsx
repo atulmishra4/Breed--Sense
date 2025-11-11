@@ -13,7 +13,7 @@ function page() {
         formState: { errors },
     } = useForm();
 
-    // ✅ Define your onSubmit function
+    //  Define your onSubmit function
     const onSubmit = async (data) => {
         console.log("Form data:", data);
         // You can handle login logic here — like sending data to your API
@@ -28,17 +28,16 @@ function page() {
     const [loading, setloading] = useState(false)
     const login = async () => {
         try {
-            setloading(true)
-            const response = await axios.post("/api/users/login", user)
-            router.push("/profile")
+            setloading(true);
+            const response = await axios.post("/api/users/login", user);
+            console.log("Login successful:", response.data);
+            router.push("/profile");
+        } catch (error) {
+            console.log("Login failed:", error.response?.data || error.message);
+        } finally {
+            setloading(false); // stop loading after request
         }
-        catch (error) {
-            console.log("Login failed", error)
-        }
-        finally {
-            setloading(true)
-        }
-    }
+    };
     useEffect(() => {
         if (user.email.length > 0 && user.password.length > 0) {
             setbuttonDisabled(false)
@@ -72,7 +71,7 @@ function page() {
                             {errors.myform && <div className='red'>{errors.myform.message}</div>}
                             {errors.blocked && <div className='red'>{errors.blocked.message}</div>} */}
                         </form>
-                        <button className="border-2 border-sky-300 m-2 w-56 rounded-[9px] p-3 text-[16px] bg-sky-600 text-white  hover:text-black "  onClick={login} >
+                        <button className="border-2 border-sky-300 m-2 w-56 rounded-[9px] p-3 text-[16px] bg-sky-600 text-white  hover:text-black " onClick={login} >
                             {buttondisabled ? "No Login" : "Login"}
                         </button>
 
