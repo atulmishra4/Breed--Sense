@@ -10,7 +10,7 @@ function page() {
     <div className=" justify-center items-center text-center my-8 mx-4 ">
       <div className="header">
 
-        <h1 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4">About BreedSense</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-purple-800 mb-4">About BreedSense</h1>
 
         <p className="text-justify mb-3"> BreedSense is an intelligent, image-based breed recognition platform designed to transform livestock
           management and conservation in India. By harnessing the power of artificial intelligence, computer vision,
@@ -56,7 +56,7 @@ function page() {
 
       <div className="origin">
 
-        <h3 className="text-2xl md:text-4xl font-bold text-blue-800 mb-3">The Origin Story</h3>
+        <h3 className="text-2xl md:text-4xl font-bold text-purple-800 mb-3">The Origin Story</h3>
 
         <p className="text-justify mb-3">
           BreedSense was conceptualized with a clear understanding of India’s agricultural challenges—farmers rely
@@ -78,15 +78,15 @@ function page() {
 
       <div className="visiosion">
 
-        <h2 className="text-3xl  font-bold text-blue-800 mb-4">
+        <h2 className="text-3xl  font-bold text-purple-800 mb-4">
 
           Our Vision and Mission
         </h2>
-        <h4 className="text-2xl font-bold text-blue-600  mb-3">Our Vision:</h4>
+        <h4 className="text-2xl font-bold text-purple-600  mb-3">Our Vision:</h4>
         <p className="text-justify mb-3">To make breed recognition intelligent, transparent, and universally accessible—empowering India’s livestock
           ecosystem through data-driven decisions, AI technology, and sustainable practices.</p>
 
-        <h4 className="text-2xl font-bold text-blue-600  mb-3">Our Mission:</h4>
+        <h4 className="text-2xl font-bold text-purple-600  mb-3">Our Mission:</h4>
         Empower Farmers: Provide a simple tool to identify breeds, track productivity, and manage livestock
         efficiently. <br />
         Support Governance: Assist government bodies in livestock census, breed conservation, and subsidy planning.
@@ -104,7 +104,7 @@ function page() {
 
       <div className="creator">
 
-        <h2 className="text-2xl md:text-3xl font-bold text-blue-800 mb-3">
+        <h2 className="text-2xl md:text-3xl font-bold text-purple-800 mb-3">
 
           About the Creator
         </h2>
@@ -124,7 +124,7 @@ function page() {
       <div >
 
         <motion.button
-          className="login-button1 p-2 bg-blue-400    hover:bg-sky-600  rounded-md  "
+          className="login-button1 p-2 bg-purple-400    hover:bg-purple-600  rounded-md  "
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
