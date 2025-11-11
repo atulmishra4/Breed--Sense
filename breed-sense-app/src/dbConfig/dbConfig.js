@@ -1,23 +1,24 @@
 import mongoose from "mongoose";
 
+const MONGO_URL =
+  process.env.MONGO_URL ||
+  "mongodb+srv://rajritik4041_db_user:WNgjN1AoghOB31YV@cluster.wx55kht.mongodb.net/"; 
+
 export async function connect() {
+  if (mongoose.connection.readyState === 1) {
+    console.log("MongoDB already connected");
+    return;
+  }
+
   try {
-    await mongoose.connect(
-      process.env.MONGO_URL ||
-        "mongodb+srv://rajritik4041:X2T8QQmBNiKewH3e@cluster.iflbmhz.mongodb.net/"
-    );
-
-    const connection = mongoose.connection;
-
-    connection.on("connected", () => {
-      console.log(" MongoDB connected successfully");
+    await mongoose.connect(MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
-
-    connection.on("error", (err) => {
-      console.error(" MongoDB connection error: " + err);
-      process.exit(1);
-    });
+    console.log("MongoDB connected successfully");
   } catch (error) {
-    console.error(" Something went wrong while connecting MongoDB: ", error);
+    console.error("MongoDB connection error:", error);
+    throw new Error("Failed to connect to MongoDB");
   }
 }
+
