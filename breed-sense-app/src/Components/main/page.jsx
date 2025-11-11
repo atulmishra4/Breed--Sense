@@ -49,7 +49,7 @@ function main() {
                 <div
                     className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 text-center  justify-center grid-flow-row-dense">
                     <div
-                        className="search shadow hover:shadow-lg  m-2 text-center justify-center pt-4 pl-4 pr-4 pb-2 sm:p-4  rounded-[20px]  bg-white">
+                        className="search shadow bg-purple-100 hover:shadow-lg  m-2 text-center justify-center pt-4 pl-4 pr-4 pb-2 sm:p-4  rounded-[20px] ">
                         <div className="image p-2">📷</div>
                         <h1 className="font-bold text-[20px] sm:text-4xl">1.Capture</h1>
                         <div className="text text-[10px] sm:text-xl ">Farmer snaps a photo </div>

@@ -49,38 +49,40 @@ function page() {
     }, [user])
 
     return (
-        <div className="w-100% bg-sky-400 flex justify-center ">
+        <div className="w-100% bg-sky-300 flex justify-center ">
             <div className=" block ">
-                <div className="box w-[350px] h-[500px]  mt-32 mb-32 rounded-3xl text-center bg-white">
+                <div className="box w-[350px] h-[500px]  mt-32 mb-32 rounded-3xl text-center bg-sky-200">
                     <h1 className="font-bold text-2xl pt-4 pb-6 block ">Breed Sense </h1>
                     <div className="container">
                         <form onSubmit={handleSubmit(onSubmit)}>
-
+                            <label htmlFor="email" className="text-lg text-shadow-xs font-serif">Email:</label>
+                            <br />
                             {/* <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " placeholder='Email'  {...register("email", { minLength: { value: 7, message: "Min length of password is 7" }, })} type="email" /> */}
-                            <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " type="email" id="email" value={user.email} placeholder="email" onChange={(e) => setuser({ ...user, email: e.target.value })} />
+                            <input className="border-2 border-sky-300 m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-white text-black  hover:text-black " type="email" id="email" value={user.email} placeholder="example@email.com" onChange={(e) => setuser({ ...user, email: e.target.value })} />
 
                             {errors.password && <div className='red'>{errors.password.message}</div>}
                             <br />
+                            <label htmlFor="password" className="text-lg text-shadow-xs font-serif">Password:</label>
+                            <br />
                             {/* <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " placeholder='Password'  {...register("password", { minLength: { value: 7, message: "Min length of password is 7" }, })} type="password" /> */}
-                            <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " type="password" id="password" value={user.password} placeholder="password" onChange={(e) => setuser({ ...user, password: e.target.value })} />
+                            <input className="border-2 border-sky-300 m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-white text-black  hover:text-black " type="password" id="password" value={user.password} placeholder="Password" onChange={(e) => setuser({ ...user, password: e.target.value })} />
                             {errors.password && <div className='red'>{errors.password.message}</div>}
                             {/* <br />
                             <input className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black " disabled={isSubmitting} type="submit" value="Login" />
                             {errors.myform && <div className='red'>{errors.myform.message}</div>}
                             {errors.blocked && <div className='red'>{errors.blocked.message}</div>} */}
                         </form>
-                        <button className="border-2 border-white m-2 w-56 rounded-[5px] pl-3 p-1 text-[16px] bg-gray-400 text-white  hover:text-black "  onClick={login} >
+                        <button className="border-2 border-sky-300 m-2 w-56 rounded-[9px] p-3 text-[16px] bg-sky-600 text-white  hover:text-black "  onClick={login} >
                             {buttondisabled ? "No Login" : "Login"}
                         </button>
 
-                        <div className="mt-6">
+                        <div className="mt-2">
                             <div className="or">
-                                <hr />
+
                                 <h1> OR </h1>
-                                <hr />
                             </div>
 
-                            <p>Already have an account?</p>
+                            <p className="text-lg font-serif pt-2">Already have an account?</p>
                             <button
                                 onClick={() => signIn("github")}
                                 className="bg-gray-700 text-white px-4 py-2 rounded-lg m-2 hover:bg-black"
